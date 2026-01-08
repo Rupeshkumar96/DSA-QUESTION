@@ -1,3 +1,8 @@
+# what is kadane algorithm:- amous dynamic programming approach hai jo Maximum Subarray Sum Problem solve karta hai.
+
+# Question - Given an integer array nums find the subarray with largest sum,and return its sum.
+
+
 class student:
       def kadane(self,nums:list[int])->int:
             current_sum=nums[0]
