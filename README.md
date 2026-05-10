@@ -1,3 +1,12 @@
+# 🧩 DSA-QUESTION
+
+## 📌 Overview
+This repository contains a collection of **Data Structures and Algorithms (DSA) questions and solutions** implemented in Java/Python.  
+It is designed to help students, interviewees, and developers practice core concepts of computer science with clean, well‑structured code.
+
+---
+
+## 📂 Repository Structure
 
 ---
 
