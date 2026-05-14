@@ -1,21 +1,63 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    int hashTable[10];
-    for(int i=0;i<10;i++) hashTable[i] = -1;
+#define SIZE 10
 
-    int arr[] = {23, 43, 13, 27};
-    for(int i=0;i<4;i++) {
-        int key = arr[i];
-        int index = key % 10;
+class HashTable {
+    int table[SIZE];
 
-        while(hashTable[index] != -1)
-            index = (index + 1) % 10;
-
-        hashTable[index] = key;
+public:
+    HashTable() {
+        for(int i = 0; i < SIZE; i++) {
+            table[i] = -1;
+        }
     }
 
-    for(int i=0;i<10;i++)
-        cout << i << " -> " << hashTable[i] << endl;
+    // Insert element using linear probing
+    void insert(int key) {
+        int index = key % SIZE;
+
+        // Linear probing
+        while(table[index] != -1) {
+            index = (index + 1) % SIZE;
+        }
+
+        table[index] = key;
+    }
+
+    // Display hash table
+    void display() {
+        cout << "\nHash Table:\n";
+
+        for(int i = 0; i < SIZE; i++) {
+            cout << i << " --> ";
+
+            if(table[i] == -1)
+                cout << "Empty";
+            else
+                cout << table[i];
+
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    HashTable h;
+
+    int n, value;
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    cout << "Enter elements:\n";
+
+    for(int i = 0; i < n; i++) {
+        cin >> value;
+        h.insert(value);
+    }
+
+    h.display();
+
+    return 0;
 }
