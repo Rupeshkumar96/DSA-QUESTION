@@ -33,7 +33,9 @@ It is designed to help students, interviewees, and developers practice core conc
 - Trees (Binary Tree, BST, Traversals)  
 - Graphs (BFS, DFS, shortest path algorithms)  
 - Recursion & Backtracking  
-- Sorting & Searching algorithms  
+- Sorting & Searching algorithms
+- Heap
+- Hashing
 - Dynamic Programming (selected problems)  
 
 ---
