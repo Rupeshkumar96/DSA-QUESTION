@@ -1,24 +1,81 @@
+// quadratic_probing_hash.cpp
 #include <iostream>
+#include <vector>
 using namespace std;
 
-int main() {
-    int hashTable[10];
-    for(int i=0;i<10;i++) hashTable[i] = -1;
+class QuadraticProbingHash {
+private:
+    vector<int> table;
+    int capacity;
+    int size;
 
-    int arr[] = {23, 43, 13, 27};
-    for(int i=0;i<4;i++) {
-        int key = arr[i];
-        int index = key % 10;
-        int j = 1;
-
-        while(hashTable[index] != -1) {
-            index = (key % 10 + j*j) % 10;
-            j++;
-        }
-
-        hashTable[index] = key;
+public:
+    QuadraticProbingHash(int cap) {
+        capacity = cap;
+        size = 0;
+        table.resize(capacity, -1);
     }
 
-    for(int i=0;i<10;i++)
-        cout << i << " -> " << hashTable[i] << endl;
+    int hashFunction(int key) {
+        return key % capacity;
+    }
+
+    void insert(int key) {
+        if (size == capacity) {
+            cout << "Hash table is full!" << endl;
+            return;
+        }
+
+        int index = hashFunction(key);
+        int i = 1;
+
+        while (table[index] != -1) {
+            index = (hashFunction(key) + i*i) % capacity;
+            i++;
+        }
+
+        table[index] = key;
+        size++;
+    }
+
+    bool search(int key) {
+        int index = hashFunction(key);
+        int i = 1;
+
+        while (table[index] != -1) {
+            if (table[index] == key) {
+                return true;
+            }
+            index = (hashFunction(key) + i*i) % capacity;
+            i++;
+        }
+        return false;
+    }
+
+    void display() {
+        cout << "Hash Table: ";
+        for (int i = 0; i < capacity; i++) {
+            if (table[i] != -1)
+                cout << i << ":" << table[i] << " ";
+            else
+                cout << i << ":- ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    QuadraticProbingHash hash(10);
+
+    hash.insert(15);
+    hash.insert(25);
+    hash.insert(35);
+    hash.insert(5);
+    hash.insert(45);
+
+    hash.display();
+
+    cout << "Search 25: " << (hash.search(25) ? "Found" : "Not Found") << endl;
+
+    return 0;
 }
